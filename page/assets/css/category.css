@@ -1,0 +1,19 @@
+.data {
+    position: absolute;
+    width: 100%;
+    min-height: 60px;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    color: white;
+}
+
+.img {
+    border: 2px black solid;
+    margin: 4px;
+}
+
+.small-image {
+    width: 250px;
+    height: 250px;
+}
