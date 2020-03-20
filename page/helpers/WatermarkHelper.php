@@ -24,15 +24,22 @@ class WatermarkHelper
      * @param string $imagePath
      * @param string $extension
      * @param string $watermarkPosition
+     *
+     * @return bool
      */
-    public static function addWaterMark(string $imagePath, string $extension, string $watermarkPosition)
+    public static function addWaterMark(string $imagePath, string $extension, string $watermarkPosition): bool
     {
         $domain = \Yii::$app->params['watermark_text'];
         $color = \Yii::$app->params['watermark_color'];
 
-        $image = self::getImage($imagePath, $extension);
+        try {
+            $image = self::getImage($imagePath, $extension);
+        } catch (\Exception $exception) {
+            return false;
+        }
 
-        $x = 0; $y = 0;
+        $x = 0;
+        $y = 0;
         switch ($watermarkPosition) {
             case self::WATERMARK_LEFT_TOP:
                 $x = 0;
@@ -53,12 +60,13 @@ class WatermarkHelper
         }
 
         if ($watermarkPosition === self::WATERMARK_DO_NOT_USE) {
-            return;
+            return true;
         }
 
-        imagestring($image,1,$x, $y, $domain, $color);
-
+        imagestring($image, 1, $x, $y, $domain, $color);
         self::saveImage($image, $imagePath, $extension);
+
+        return true;
     }
 
     /**

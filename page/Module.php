@@ -30,7 +30,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 'page/category/<slug>'        => 'page/user/category',
                 'page/<page>'                 => 'page/user/page',
                 'site/<_a>'                   => 'page/site/<_a>',
-                '/'                           => 'page/site',
+                '/'                           => 'page/user/page',
             ],
             false
         )

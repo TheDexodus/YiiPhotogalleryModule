@@ -53,7 +53,10 @@ class AdminCategoryController extends Controller
     {
         $dataProvider = new ActiveDataProvider(
             [
-                'query' => Category::find(),
+                'query'      => Category::find(),
+                'pagination' => [
+                    'pageSize' => 10,
+                ],
             ]
         );
 
@@ -80,13 +83,16 @@ class AdminCategoryController extends Controller
         $dataProvider = new ActiveDataProvider(
             [
                 'query' => $model->getImages(),
+                'pagination' => [
+                    'pageSize' => 10,
+                ],
             ]
         );
 
         return $this->render(
             'view',
             [
-                'model' => $model,
+                'model'        => $model,
                 'dataProvider' => $dataProvider,
             ]
         );

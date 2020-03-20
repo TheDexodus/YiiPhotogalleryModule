@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\page\models\Image */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="image-view">

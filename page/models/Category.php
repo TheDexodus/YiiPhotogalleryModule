@@ -104,7 +104,7 @@ class Category extends ActiveRecord
 
     public function validateSlug($attribute, $params): void
     {
-        if (!$this->hasErrors() && preg_match_all('/^[a-zA-Z0-9-]+$/', $this->slug) == 0) {
+        if (!$this->hasErrors() && preg_match_all('/^[a-zA-Z0-9-_]+$/', $this->slug) == 0) {
             $this->addError($attribute, 'Incorrect slug');
         }
     }

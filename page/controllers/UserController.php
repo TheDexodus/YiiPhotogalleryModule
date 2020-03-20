@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $query = Category::findByStatus($status);
         $countQuery = clone $query;
-        $pagination = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 3, 'page' => $page-1]);
+        $pagination = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10, 'page' => $page-1]);
         $categories = $query->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
