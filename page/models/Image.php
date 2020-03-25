@@ -164,6 +164,8 @@ class Image extends ActiveRecord
             return true;
         }
 
+        $this->addError('imageFile', 'Error: bad file');
+
         $this->delete();
 
         if (file_exists($fileName)) {
