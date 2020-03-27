@@ -28,6 +28,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             [
                 'photo/admin/<_e>/<_a>'       => 'page/admin-<_e>/<_a>',
                 'page/category/<slug>'        => 'page/user/category',
+                'page/category/<slug>/<page>' => 'page/user/category',
                 'page/<page>'                 => 'page/user/page',
                 'site/<_a>'                   => 'page/site/<_a>',
                 '/'                           => 'page/user/page',

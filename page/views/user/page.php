@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title; // TODO : Fix bug with resizing a
                     </div>
                     <div class="picture">
                         <img src="<?=Yii::getAlias('@web/images/photogallery/').$category->images[count($category->images) - 1]->image?>"
+                             class="category-image"
                              alt="">
                     </div>
                 </a>
@@ -48,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title; // TODO : Fix bug with resizing a
 
       var $grid = $container.masonry({
         itemSelector: '.img',
-        columnWidth: 100,
         isAnimated: true
       })
 

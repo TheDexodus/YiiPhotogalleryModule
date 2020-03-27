@@ -20,11 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
 
     <div class="gallery">
         <?php foreach ($images as $image): ?>
             <a href="<?=Yii::getAlias('@web/images/photogallery/').$image->image?>"
-               data-caption="<?=$image->title?> by <?=$image->author?>">
+               data-caption="<?=$image->title?> by <?=$image->author?>" class="m-img">
                 <img src="<?=Yii::getAlias('@web/images/photogallery/').$image->image?>" alt="" class="small-image img">
             </a>
         <?php endforeach; ?>
@@ -34,5 +36,23 @@ $this->params['breadcrumbs'][] = $this->title;
       window.onload = function () {
         baguetteBox.run('.gallery')
       }
+
+      var $container = $('.gallery')
+
+      var $grid = $container.masonry({
+        itemSelector: '.m-img',
+        isAnimated: true
+      })
+
+      var msnry = $grid.data('masonry')
+
+      $grid.infiniteScroll({
+        // options
+        path: '/page/category/<?=$category->slug?>/{{#}}',
+        append: '.m-img',
+        history: 'push',
+        historyTitle: true,
+        outlayer: msnry
+      })
     </script>
 </div>

@@ -37,7 +37,7 @@ class UserController extends Controller
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionCategory($slug)
+    public function actionCategory($slug, $page = 1)
     {
         $status = Yii::$app->user->isGuest ? AbstractStatus::STATUS_GUEST : Yii::$app->user->identity->privilege;
 
@@ -45,7 +45,14 @@ class UserController extends Controller
             throw new NotFoundHttpException('Category with this slug not founded');
         }
 
-        return $this->render('category', ['category' => $category, 'images' => $category->getImagesByStatus($status)->all()]);
+        $query = $category->getImagesByStatus($status);
+        $countQuery = clone $query;
+        $pagination = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10, 'page' => $page-1]);
+        $images = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('category', ['category' => $category, 'images' => $images]);
     }
 
     /**
